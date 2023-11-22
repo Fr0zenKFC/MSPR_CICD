@@ -1,8 +1,8 @@
 name: Industrialisation continue sur le serveur AWS (Tomcat)
 on: push
 jobs:
-  Deploy:
-    name: Deploy
+  build:
+    name: Package AWS
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
