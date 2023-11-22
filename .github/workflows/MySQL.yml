@@ -16,12 +16,12 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan ${{ secrets.CAMION }} >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.HOST_DNS }} >> ~/.ssh/known_hosts
       
       
       - name: Create SSH Tunnel
         run: |
-          ssh -i ~/.ssh/id_rsa -L 3307:127.0.0.1:3306 admin@${{ secrets.CAMION }} -N &
+          ssh -i ~/.ssh/id_rsa -L 3307:127.0.0.1:3306 admin@${{ secrets.HOST_DNS }} -N &
           SSH_TUNNEL_PID=$!
           sleep 10
           if ps -p $SSH_TUNNEL_PID > /dev/null; then
